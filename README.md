@@ -1,15 +1,16 @@
-# Personal Website - Berat MEN
+# Berat MEN - Portfolio Website
 
-A modern, responsive personal website built with React, TypeScript, and Tailwind CSS.
+A modern, responsive portfolio website built with React, TypeScript, and Tailwind CSS.
 
 ## Features
 
 - Responsive design
-- Dark/light mode
-- Projects showcase
-- About section
+- Dark/light mode with system preference detection
+- Dynamic GitHub projects showcase
+- Professional about section
 - Contact information
-- Social media links
+- Integrated social media links
+- Animated UI elements
 
 ## Technologies Used
 
@@ -18,13 +19,14 @@ A modern, responsive personal website built with React, TypeScript, and Tailwind
 - Tailwind CSS
 - Vite
 - React Icons
+- GitHub API Integration
 
 ## Getting Started
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/beratmen/personal-website.git
-cd personal-website
+git clone https://github.com/beratmen/beratmen.git
+cd beratmen
 ```
 
 2. Install dependencies:
@@ -45,7 +47,7 @@ npm run build
 ## Project Structure
 
 ```
-personal-website/
+/
 ├── src/
 │   ├── components/
 │   │   ├── About.tsx
@@ -64,12 +66,25 @@ personal-website/
 └── README.md
 ```
 
-## Customization
+## Features
 
-1. Update your personal information in the components
-2. Add your projects in the `Projects.tsx` component
-3. Modify the styling using Tailwind CSS classes
-4. Add your profile picture in the public directory
+### Dynamic Content
+- Automatic GitHub profile picture fetching
+- Real-time GitHub projects integration
+- Responsive dark/light mode toggle
+- Smooth animations and transitions
+
+### Styling
+- Modern gradient effects
+- Responsive design for all devices
+- Clean and professional typography
+- Animated UI elements
+
+### Integration
+- GitHub repository showcase
+- LinkedIn profile link
+- Email contact
+- Project live demos
 
 ## License
 
