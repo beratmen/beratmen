@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://beratmen.github.io/",
+  "homepage": "https://beratmen.github.io/beratmen/",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
