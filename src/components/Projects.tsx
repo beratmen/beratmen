@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { FaGithub, FaExternalLinkAlt, FaStar, FaCodeBranch, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+import { FaGithub, FaExternalLinkAlt, FaStar, FaCodeBranch, FaChevronLeft, FaChevronRight, FaCode, FaCalendar } from 'react-icons/fa';
 import { githubColors } from '../utils/githubColors';
 
 interface Repository {
@@ -66,7 +66,6 @@ const Projects: React.FC = () => {
     const container = scrollContainerRef.current;
     if (container) {
       container.addEventListener('scroll', checkScrollability);
-      // Initial check
       checkScrollability();
     }
 
@@ -85,7 +84,6 @@ const Projects: React.FC = () => {
           throw new Error('Failed to fetch repositories');
         }
         const data = await response.json();
-        // Filter out forked repositories and sort by creation date
         const filteredRepos = data
           .filter((repo: Repository) => !repo.fork)
           .sort((a: Repository, b: Repository) => 
@@ -104,12 +102,25 @@ const Projects: React.FC = () => {
 
   if (loading) {
     return (
-      <section id="projects" className="py-20 bg-gray-50 dark:bg-gray-900 transition-colors duration-200">
+      <section id="projects" className="py-20 bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-800">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-gray-900 dark:text-white">
-            My Projects
+          <h2 className="text-4xl font-bold text-center mb-4">
+            <span className="bg-gradient-to-r from-blue-600 to-blue-400 dark:from-blue-400 dark:to-blue-300 bg-clip-text text-transparent">
+              My Projects
+            </span>
           </h2>
-          <div className="text-center text-gray-600 dark:text-gray-400">Loading projects...</div>
+          <p className="text-gray-600 dark:text-gray-400 text-center mb-12 max-w-2xl mx-auto">
+            Loading my latest projects and contributions...
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 animate-pulse">
+            {[1, 2, 3].map((i) => (
+              <div key={i} className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6">
+                <div className="h-6 bg-gray-200 dark:bg-gray-700 rounded w-3/4 mb-4"></div>
+                <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded w-full mb-2"></div>
+                <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded w-5/6"></div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
     );
@@ -117,186 +128,176 @@ const Projects: React.FC = () => {
 
   if (error) {
     return (
-      <section id="projects" className="py-20 bg-gray-50 dark:bg-gray-900 transition-colors duration-200">
+      <section id="projects" className="py-20 bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-800">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-gray-900 dark:text-white">
-            My Projects
+          <h2 className="text-4xl font-bold text-center mb-4">
+            <span className="bg-gradient-to-r from-blue-600 to-blue-400 dark:from-blue-400 dark:to-blue-300 bg-clip-text text-transparent">
+              My Projects
+            </span>
           </h2>
-          <div className="text-center text-red-600 dark:text-red-400">Error: {error}</div>
+          <div className="text-center text-red-500 dark:text-red-400 mt-8">
+            <p className="text-xl font-semibold mb-2">Oops! Something went wrong</p>
+            <p>{error}</p>
+          </div>
         </div>
       </section>
     );
   }
 
   return (
-    <section id="projects" className="py-20 bg-gray-50 dark:bg-gray-900 transition-colors duration-200">
-      <style>
-        {`
-          @keyframes borderAnimation {
-            0%, 100% {
-              background-position: 0% 50%;
-            }
-            50% {
-              background-position: 100% 50%;
-            }
-          }
-          .animated-border {
-            position: relative;
-          }
-          .animated-border::before {
-            content: '';
-            position: absolute;
-            inset: -2px;
-            z-index: -1;
-            background: linear-gradient(
-              90deg,
-              #3178c6,
-              #00ADD8,
-              #41b883,
-              #3178c6
-            );
-            background-size: 300% 300%;
-            animation: borderAnimation 8s ease infinite;
-            border-radius: 0.5rem;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-          }
-          .animated-border:hover::before {
-            opacity: 1;
-          }
-        `}
-      </style>
+    <section id="projects" className="py-20 bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-800">
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-gray-900 dark:text-white">
-          My Projects
+        <h2 className="text-4xl font-bold text-center mb-4">
+          <span className="bg-gradient-to-r from-blue-600 to-blue-400 dark:from-blue-400 dark:to-blue-300 bg-clip-text text-transparent">
+            My Projects
+          </span>
         </h2>
+        <p className="text-gray-600 dark:text-gray-400 text-center mb-12 max-w-2xl mx-auto">
+          Explore my latest projects and contributions. Each project represents a unique challenge and learning experience.
+        </p>
+
         <div className="relative group">
-          {/* Left scroll button */}
+          {/* Scroll Buttons */}
           <button
             onClick={() => scroll('left')}
-            className={`absolute left-4 top-1/2 transform -translate-y-1/2 z-20 bg-white/90 dark:bg-gray-800/90 rounded-full p-4 shadow-xl transition-all duration-300 backdrop-blur-sm ${
-              canScrollLeft
-                ? 'opacity-100 translate-x-0 hover:bg-white dark:hover:bg-gray-700 hover:scale-110'
-                : 'opacity-0 -translate-x-full cursor-default'
-            }`}
+            className={`absolute left-4 top-1/2 transform -translate-y-1/2 z-20 
+                     bg-white/90 dark:bg-gray-800/90 rounded-full p-4 shadow-lg backdrop-blur-sm
+                     transition-all duration-300 ${
+                       canScrollLeft
+                         ? 'opacity-100 translate-x-0 hover:scale-110'
+                         : 'opacity-0 -translate-x-full'
+                     }`}
             disabled={!canScrollLeft}
             aria-label="Scroll left"
           >
-            <FaChevronLeft className="text-gray-600 dark:text-gray-300 text-2xl" />
+            <FaChevronLeft className="w-6 h-6 text-gray-800 dark:text-gray-200" />
           </button>
 
-          {/* Right scroll button */}
           <button
             onClick={() => scroll('right')}
-            className={`absolute right-4 top-1/2 transform -translate-y-1/2 z-20 bg-white/90 dark:bg-gray-800/90 rounded-full p-4 shadow-xl transition-all duration-300 backdrop-blur-sm ${
-              canScrollRight
-                ? 'opacity-100 translate-x-0 hover:bg-white dark:hover:bg-gray-700 hover:scale-110'
-                : 'opacity-0 translate-x-full cursor-default'
-            }`}
+            className={`absolute right-4 top-1/2 transform -translate-y-1/2 z-20 
+                     bg-white/90 dark:bg-gray-800/90 rounded-full p-4 shadow-lg backdrop-blur-sm
+                     transition-all duration-300 ${
+                       canScrollRight
+                         ? 'opacity-100 translate-x-0 hover:scale-110'
+                         : 'opacity-0 translate-x-full'
+                     }`}
             disabled={!canScrollRight}
             aria-label="Scroll right"
           >
-            <FaChevronRight className="text-gray-600 dark:text-gray-300 text-2xl" />
+            <FaChevronRight className="w-6 h-6 text-gray-800 dark:text-gray-200" />
           </button>
 
-          {/* Add gradient overlays for better button visibility */}
-          <div className="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-gray-50 dark:from-gray-900 to-transparent z-10 pointer-events-none"></div>
-          <div className="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-gray-50 dark:from-gray-900 to-transparent z-10 pointer-events-none"></div>
+          {/* Gradient Overlays */}
+          <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-gray-50 dark:from-gray-900 to-transparent z-10 pointer-events-none"></div>
+          <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-gray-50 dark:from-gray-900 to-transparent z-10 pointer-events-none"></div>
 
-          <div 
+          {/* Projects Container */}
+          <div
             ref={scrollContainerRef}
-            className="overflow-x-auto pb-4 hide-scrollbar scroll-smooth relative"
+            className="overflow-x-auto hide-scrollbar pb-8 pt-2"
           >
-            <div className="inline-flex space-x-6" style={{ minWidth: 'max-content' }}>
+            <div className="inline-flex space-x-6">
               {repositories.map((repo) => (
                 <a
                   key={repo.id}
                   href={repo.html_url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block animated-border"
+                  className="block w-[380px] transform transition-all duration-300 group"
                 >
-                  <div
-                    className="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-all transform hover:-translate-y-1 cursor-pointer flex flex-col relative z-10"
-                    style={{ width: '350px', height: '400px' }}
-                  >
-                    <div className="p-6 flex flex-col flex-grow">
+                  <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg 
+                               border border-gray-100 dark:border-gray-700
+                               transition-all duration-300 hover:bg-blue-50 dark:hover:bg-blue-900/10 h-full">
+                    <div className="p-6">
+                      {/* Header */}
                       <div className="flex justify-between items-start mb-4">
-                        <h3 className="text-xl font-bold text-gray-900 dark:text-white truncate max-w-[200px]">
+                        <h3 className="text-xl font-bold text-gray-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
                           {repo.name}
                         </h3>
-                        <div className="flex items-center space-x-3 text-gray-600 dark:text-gray-400">
-                          <div className="flex items-center group cursor-pointer">
-                            <FaStar className="mr-1 text-yellow-400 group-hover:text-yellow-500 transform group-hover:scale-110 transition-all duration-200" />
-                            <span className="group-hover:text-yellow-500 transition-colors duration-200">{repo.stargazers_count}</span>
-                          </div>
-                          <div className="flex items-center group cursor-pointer">
-                            <FaCodeBranch className="mr-1 group-hover:text-blue-500 transform group-hover:scale-110 transition-all duration-200" />
-                            <span className="group-hover:text-blue-500 transition-colors duration-200">{repo.forks_count}</span>
-                          </div>
+                        <div className="flex space-x-3">
+                          {repo.homepage && (
+                            <a
+                              href={repo.homepage}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200
+                                       transform transition-all duration-200 hover:scale-110"
+                              aria-label="Live demo"
+                              onClick={(e) => e.stopPropagation()}
+                            >
+                              <FaExternalLinkAlt className="w-5 h-5" />
+                            </a>
+                          )}
+                          <span className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200
+                                       transform transition-all duration-200 hover:scale-110">
+                            <FaGithub className="w-5 h-5" />
+                          </span>
                         </div>
                       </div>
-                      
-                      <div className="mb-4 flex-grow">
-                        <p className="text-gray-600 dark:text-gray-400 line-clamp-3">
-                          {repo.description || 'No description available'}
-                        </p>
-                      </div>
 
+                      {/* Description */}
+                      <p className="text-gray-600 dark:text-gray-300 mb-4 line-clamp-2 group-hover:text-gray-700 dark:group-hover:text-gray-200 transition-colors">
+                        {repo.description || 'No description available'}
+                      </p>
+
+                      {/* Tech Stack & Topics */}
                       <div className="space-y-4">
-                        <div className="flex flex-wrap gap-2">
-                          {repo.language && (
-                            <span 
-                              className="px-3 py-1 rounded-full text-sm flex items-center"
+                        {/* Language */}
+                        {repo.language && (
+                          <div className="flex items-center space-x-2">
+                            <FaCode className="text-gray-500 dark:text-gray-400" />
+                            <span
+                              className="px-3 py-1 rounded-full text-sm transition-colors"
                               style={{
                                 backgroundColor: `${getLanguageColor(repo.language)}20`,
                                 color: getLanguageColor(repo.language)
                               }}
                             >
-                              <span 
-                                className="w-2 h-2 rounded-full mr-2"
-                                style={{ backgroundColor: getLanguageColor(repo.language) }}
-                              ></span>
                               {repo.language}
                             </span>
-                          )}
-                          {repo.topics?.slice(0, 3).map((topic, i) => (
-                            <span
-                              key={i}
-                              className="px-3 py-1 bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 rounded-full text-sm"
-                            >
-                              {topic}
-                            </span>
-                          ))}
-                          {repo.topics?.length > 3 && (
-                            <span className="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-full text-sm">
-                              +{repo.topics.length - 3} more
-                            </span>
-                          )}
-                        </div>
+                          </div>
+                        )}
 
-                        <div className="flex justify-between items-center">
-                          <div className="flex space-x-4">
-                            <span className="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors">
-                              <FaGithub className="text-xl" />
-                            </span>
-                            {repo.homepage && (
-                              <a
-                                href={repo.homepage}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors"
-                                onClick={(e) => e.stopPropagation()}
+                        {/* Topics */}
+                        {repo.topics.length > 0 && (
+                          <div className="flex flex-wrap gap-2">
+                            {repo.topics.slice(0, 3).map((topic) => (
+                              <span
+                                key={topic}
+                                className="px-3 py-1 text-sm bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400
+                                         rounded-full font-medium transition-colors"
                               >
-                                <FaExternalLinkAlt className="text-xl" />
-                              </a>
+                                {topic}
+                              </span>
+                            ))}
+                            {repo.topics.length > 3 && (
+                              <span className="px-3 py-1 text-sm bg-gray-50 dark:bg-gray-800 text-gray-600 dark:text-gray-400
+                                           rounded-full font-medium transition-colors">
+                                +{repo.topics.length - 3}
+                              </span>
                             )}
                           </div>
-                        </div>
+                        )}
+                      </div>
 
-                        <div className="text-sm text-gray-500 dark:text-gray-400">
-                          <p>Created: {formatDate(repo.created_at)}</p>
-                          <p>Last updated: {formatDate(repo.updated_at)}</p>
+                      {/* Stats & Date */}
+                      <div className="mt-6 pt-4 border-t border-gray-100 dark:border-gray-700">
+                        <div className="flex items-center justify-between">
+                          <div className="flex items-center space-x-4">
+                            <div className="flex items-center text-yellow-500 dark:text-yellow-400">
+                              <FaStar className="w-4 h-4 mr-1" />
+                              <span className="text-sm">{repo.stargazers_count}</span>
+                            </div>
+                            <div className="flex items-center text-blue-500 dark:text-blue-400">
+                              <FaCodeBranch className="w-4 h-4 mr-1" />
+                              <span className="text-sm">{repo.forks_count}</span>
+                            </div>
+                          </div>
+                          <div className="flex items-center text-gray-500 dark:text-gray-400 group-hover:text-gray-600 dark:group-hover:text-gray-300 transition-colors">
+                            <FaCalendar className="w-4 h-4 mr-2" />
+                            <span className="text-sm">{formatDate(repo.created_at)}</span>
+                          </div>
                         </div>
                       </div>
                     </div>
