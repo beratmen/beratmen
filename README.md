@@ -1,91 +1,132 @@
-# Berat MEN - Portfolio Website
+# Berat MEN - Personal Portfolio & Blog
 
-A modern, responsive portfolio website built with React, TypeScript, and Tailwind CSS.
+A modern, responsive personal portfolio and blog website built with React, TypeScript, and Tailwind CSS.
 
-## Features
+## 🌟 Features
 
-- Responsive design
-- Dark/light mode with system preference detection
-- Dynamic GitHub projects showcase
-- Professional about section
-- Contact information
-- Integrated social media links
-- Animated UI elements
+### Portfolio
+- 🎨 Modern and responsive design
+- 🌓 Dark/Light mode support
+- 📱 Mobile-first approach
+- 🎯 Sections for About, Projects, and Contact
+- 💼 Interactive project showcase
+- 🔄 Smooth scrolling and animations
 
-## Technologies Used
+### Blog System
+- ✍️ Full-featured blog with admin panel
+- 📝 Markdown support for writing posts
+- 💾 Draft system for work in progress
+- 👀 Live preview while writing
+- 🏷️ Categories and tags support
+- ⏱️ Reading time estimation
+- 🔗 Featured links section
+- 🖼️ Cover image support
+- 📱 Responsive blog layout
+- 🔍 Search functionality
+- 🔒 Secure admin authentication
 
-- React
-- TypeScript
-- Tailwind CSS
-- Vite
-- React Icons
-- GitHub API Integration
+## 🛠️ Technologies
 
-## Getting Started
+- **Frontend Framework**: React with TypeScript
+- **Styling**: Tailwind CSS
+- **Routing**: React Router
+- **Markdown**: React Markdown
+- **Icons**: React Icons
+- **Build Tool**: Vite
+- **Deployment**: GitHub Pages
+
+## 🚀 Getting Started
+
+### Prerequisites
+- Node.js (v14 or higher)
+- npm or yarn
+
+### Installation
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/beratmen/beratmen.git
-cd beratmen
+git clone https://github.com/beratmen/beratmen.github.io.git
+cd beratmen.github.io
 ```
 
 2. Install dependencies:
 ```bash
 npm install
+# or
+yarn install
 ```
 
 3. Start the development server:
 ```bash
 npm run dev
+# or
+yarn dev
 ```
 
 4. Build for production:
 ```bash
 npm run build
+# or
+yarn build
 ```
 
-## Project Structure
+## 📝 Blog Usage
 
-```
-/
-├── src/
-│   ├── components/
-│   │   ├── About.tsx
-│   │   ├── Footer.tsx
-│   │   ├── Home.tsx
-│   │   ├── Navbar.tsx
-│   │   └── Projects.tsx
-│   ├── App.tsx
-│   ├── main.tsx
-│   └── index.css
-├── public/
-├── index.html
-├── package.json
-├── tailwind.config.js
-├── postcss.config.js
-└── README.md
-```
+### Admin Access
+1. Navigate to `/admin/blog`
+2. Log in with admin credentials
+3. Create, edit, or manage blog posts
 
-## Features
+### Blog Features
+- Create and manage blog posts
+- Save drafts for later
+- Preview posts before publishing
+- Add categories and tags
+- Set custom reading time
+- Add featured links
+- Upload cover images
+- Format content with Markdown
 
-### Dynamic Content
-- Automatic GitHub profile picture fetching
-- Real-time GitHub projects integration
-- Responsive dark/light mode toggle
-- Smooth animations and transitions
+## 🎨 Customization
 
-### Styling
-- Modern gradient effects
-- Responsive design for all devices
-- Clean and professional typography
-- Animated UI elements
+### Theme
+The site uses Tailwind CSS for styling. You can customize the theme by modifying:
+- `tailwind.config.js` for theme settings
+- `src/index.css` for global styles
 
-### Integration
-- GitHub repository showcase
-- LinkedIn profile link
-- Email contact
-- Project live demos
+### Content
+Update your personal information in:
+- `src/components/Home.tsx` for main content
+- `src/components/About.tsx` for about section
+- `src/components/Projects.tsx` for project showcase
+- `src/components/Footer.tsx` for contact information
 
-## License
+## 📱 Responsive Design
 
-MIT License 
+The site is fully responsive and optimized for:
+- Mobile devices
+- Tablets
+- Desktop screens
+- Large displays
+
+## 🔐 Security
+
+- Secure admin authentication
+- Protected admin routes
+- Environment variable support
+- XSS protection
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 👤 Author
+
+**Berat MEN**
+- Website: [beratmen.github.io](https://beratmen.github.io)
+- GitHub: [@beratmen](https://github.com/beratmen)
+- LinkedIn: [Berat MEN](https://linkedin.com/in/beratmen)
+
+## 🤝 Contributing
+
+Contributions, issues, and feature requests are welcome! 
